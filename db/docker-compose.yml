@@ -1,0 +1,15 @@
+services:
+  postgres:
+    image: "postgres:latest"
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    volumes:
+      - "pgdata:/var/lib/postgresql/data/"
+    environment:
+      POSTGRES_USER: rohitnandi
+      POSTGRES_PASSWORD: postgres
+volumes:
+  pgdata:
+#database_url=postgresql://rohitnandi:postgres@postgres:5432
