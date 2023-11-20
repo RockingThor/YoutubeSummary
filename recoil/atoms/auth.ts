@@ -1,12 +1,7 @@
+import { Session } from "next-auth";
 import { atom } from "recoil";
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-export const authState = atom<User | null>({
+export const authState = atom<Session | null>({
   key: "authState",
   default: null,
 });

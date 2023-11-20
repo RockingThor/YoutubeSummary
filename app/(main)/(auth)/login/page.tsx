@@ -1,3 +1,4 @@
+"use client";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,8 +6,17 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/components/Authform";
+import { useRecoilValue } from "recoil";
+import { authSelector } from "@/recoil/selectors/authSelector";
+import { Session } from "next-auth";
+import { useRouter } from "next/navigation";
 
 export default function AuthenticationPage() {
+  const auth: Session | null = useRecoilValue(authSelector);
+  const router = useRouter();
+  if (auth) {
+    router.push("/home/dashboard");
+  }
   return (
     <>
       <div className="md:hidden">
@@ -50,16 +60,16 @@ export default function AuthenticationPage() {
             >
               <path d="M15 6v12a3 3 0 1 0 3-3H6a3 3 0 1 0 3 3V6a3 3 0 1 0-3 3h12a3 3 0 1 0-3-3" />
             </svg>
-            Acme Inc
+            Youtube Summarizer
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
               <p className="text-lg">
-                &ldquo;This library has saved me countless hours of work and
-                helped me deliver stunning designs to my clients faster than
-                ever before.&rdquo;
+                &ldquo;A place where you can save time by summarizing
+                information of a long Youtube video by using the power of AI.
+                &rdquo;
               </p>
-              <footer className="text-sm">Sofia Davis</footer>
+              <footer className="text-sm">Rohit Nandi</footer>
             </blockquote>
           </div>
         </div>
